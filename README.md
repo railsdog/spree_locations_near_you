@@ -7,6 +7,8 @@ Spree extension to provide a list of retail locations near a users' provided pos
 - Provide a means of geocoding any given ActiveRecord model based on address
 - Supports a single geocoding provider
 - Provides a facility for looking up a user-submitted location identifier (presumably a postal code) and returning a  ActiveRecord result set of locations sorted by ascending distance from the supplied starting point
+- Delegates to the `alexreisner/geocoder`
+- Targets PostgreSQL first if needed, MySQL can come later
 
 ## What this gem does not do
 
