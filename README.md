@@ -1,5 +1,6 @@
 SpreeLocationsNearYou
 =====================
+
 # spree_locations_near_you
 Spree extension to provide a list of retail locations near a users' provided postal code
 
@@ -54,3 +55,5 @@ require 'spree_locations_near_you/factories'
 ```
 
 Copyright (c) 2015 [name of extension creator], released under the New BSD License
+=======
+>>>>>>> 52a513fa8d985d1757a1f1f982efafc09c83e49b
