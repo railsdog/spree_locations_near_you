@@ -1,11 +1,11 @@
 module Spree
   module Admin
     class VenuesController < Spree::Admin::ResourceController
+      before_action :find_store, only: [:edit, :update, :destroy]
 
       def index
-        @venues = Spree::Venue.all
+        load_venues
         @venue = Spree::Venue.new
-        # show all venues
       end
 
       def new
@@ -17,12 +17,34 @@ module Spree
       end
 
       def create
-        # create new venue
+        @venue = Spree::Venue.new(venue_params)
+        if @venue.save
+           redirect_to admin_venues_path
+        else
+          load_venues
+          flash[:error] = 'There was an error.'
+          render :index
+        end
       end
 
-      def delete
+      def destroy
         # delete new venue
       end
+
+      private
+
+       def load_venues
+         per_page = params[:per_page] || 20
+         @venues = Spree::Venue.page(params[:page]).per(per_page)
+       end
+
+       def find_store
+         @store = Spree::Store.find_by id: params[:id]
+       end
+
+       def venue_params
+         params.require(:venue).permit( :name, :address )
+       end
 
     end 
   end

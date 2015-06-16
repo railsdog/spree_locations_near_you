@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="four colums alpha">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "fullwidth title" %>
+    <%= f.error_message_on :name %>
+  </div>
+  <div class="four colums alpha">
+    <%= f.label :address %>
+    <%= f.text_field :address, class: "fullwidth title" %>
+    <%= f.error_message_on :name %>
+  </div>
+  <div class="form-buttons filter-actions actions">
+    <%= f.submit %>
+  </div>
+</div>

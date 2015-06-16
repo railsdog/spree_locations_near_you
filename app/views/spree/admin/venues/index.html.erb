@@ -1,3 +1,5 @@
+<!-- <%#= render partial: 'spree/admin/shared/content_header'%> needs to be fix -->
+
 <%= form_for @venue, url: {controller: 'venues', action: :create } do |f|  %>
 <div class="fieldset">
   <div class="legend">New Venue</div>
@@ -5,7 +7,7 @@
 </div>
 <% end %>
 
-<%#= pagninate @venues %>
+<!-- <%#= pagninate @venues %> not working -->
 
 <% if @venues.present? %>
   <%= render partial: 'venues' %>
