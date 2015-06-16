@@ -9,7 +9,16 @@ module Spree
       end
 
       def edit
-        #edit venue
+      end
+
+      def update
+        if @venue.update_attributes(venue_params)
+          redirect_to edit_admin_venue_path(@venue)
+        else
+          load_stores
+          flash[:error] = 'There was an error.'
+          render :index
+        end
       end
 
       def create
