@@ -23,3 +23,4 @@ module Spree
     end
   end
 end
+# Spree:Venue.by_distance_from_latlong(40.7127837, -74.0059413)
