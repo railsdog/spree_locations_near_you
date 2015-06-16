@@ -1,0 +1,13 @@
+<table id="venues">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'venue', locals: { venues: @venues } %>
+  </tbody>
+</table>

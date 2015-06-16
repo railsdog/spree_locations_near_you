@@ -3,7 +3,8 @@ module Spree
     class VenuesController < Spree::Admin::ResourceController
 
       def index
-        binding.pry
+        @venues = Spree::Venue.all
+        @venue = Spree::Venue.new
         # show all venues
       end
 
