@@ -8,10 +8,6 @@ module Spree
         @venue = Spree::Venue.new
       end
 
-      def new
-        # form to create new venue
-      end
-
       def edit
         #edit venue
       end
@@ -28,7 +24,8 @@ module Spree
       end
 
       def destroy
-        # delete new venue
+        @venue.destroy
+        redirect_to admin_venues_path
       end
 
       private
