@@ -1,9 +1,13 @@
 <% venues.each do | venue| %>
   <tr>
     <td><%= venue.name %></td>
-    <td><%= venue.address %></td>
-    <td><%= venue.latitude %></td>
-    <td><%= venue.longitude %></td>
+    <td><%= venue.street_address %></td>
+    <td><%= venue.city %></td>
+    <td><%= venue.country %></td>
+    <td><%= venue.state %></td>
+    <td><%= venue.zip %></td>
+    <td><%= venue.phone %></td>
+    <td><%= venue.website %></td>
     <td data-hook="admin_venues_index_row_actions" class="actions">
       <a class="fa fa-edit icon_link with-tip no-text" data-action="edit" href=<%= "/admin/venues/#{venue.id}/edit" %>></a>
       <a class="delete-resource fa fa-trash icon_link with-tip no-text" data-action="remove" data-confirm="Are you sure?" href=<%="/admin/venues/#{venue.id}" %>></a>

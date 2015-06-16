@@ -12,6 +12,7 @@ module Spree
       end
 
       def update
+        @venue.set_full_address
         if @venue.update_attributes(venue_params)
           redirect_to edit_admin_venue_path(@venue)
         else
@@ -23,6 +24,7 @@ module Spree
 
       def create
         @venue = Spree::Venue.new(venue_params)
+        @venue.set_full_address
         if @venue.save
            redirect_to admin_venues_path
         else
@@ -49,7 +51,7 @@ module Spree
        end
 
        def venue_params
-         params.require(:venue).permit( :name, :address )
+         params.require(:venue).permit( :name, :address, :street_address, :city, :country, :phone, :state, :website, :zip, :hidden)
        end
 
     end 
