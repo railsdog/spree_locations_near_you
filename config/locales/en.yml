@@ -3,3 +3,8 @@
 
 en:
   hello: "Hello world"
+
+en:
+  spree:
+    venue:
+      index: Venues
