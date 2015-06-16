@@ -2,7 +2,6 @@ module Spree
   module Concerns
     module Locator
       extend ActiveSupport::Concern
-      puts "**************you got here"
       included do
         scope :by_distance_from_latlong, -> (lat, lng) {
         # ** NOTE: postgres earthdistance orders points as (lng,lat) **
