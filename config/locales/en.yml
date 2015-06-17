@@ -5,3 +5,13 @@ en:
   spree:
     venue:
       index: Venues
+en:
+  spree:
+    error: There was an error.
+
+en:
+  spree:
+    success:
+      created_venue: Venue was created.
+      updated_venue: Venue was updated.
+      deleted_venue: Venue was deleted.
