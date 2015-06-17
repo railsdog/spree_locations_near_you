@@ -20,8 +20,9 @@ describe Spree::Admin::VenuesController do
     context 'with valid attributes' do
       before { spree_post :create, venue: venue.attributes }
       it { expect(response).to redirect_to(spree.admin_venues_path) }
+      it { expect(venue.address).not_to eq(nil) }
       it 'saves a new venue' do
-        expect{ spree_post :create, venue: venue.attributes }.to change(Spree::venue, :count).by(1)
+        expect{ spree_post :create, venue: venue.attributes }.to change(Spree::Venue, :count).by(1)
       end
     end
 
@@ -35,6 +36,9 @@ describe Spree::Admin::VenuesController do
     before { spree_put :update, id: venue.id, venue: venue.attributes }
     it { expect(venue.reload.title).to eq(venue.attributes.title) }
     it { expect(response).to redirect_to(spree.edit_admin_venues_path) }
+    it 'updates address field' do
+      expect{ spree_post :create, venue: venue.attributes }.to change(venue.address )
+    end
   end
 
   describe '#destroy' do
