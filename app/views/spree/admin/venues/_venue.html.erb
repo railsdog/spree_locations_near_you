@@ -1,6 +1,6 @@
 <% venues.each do | venue| %>
   <tr>
-    <td><%= venue.name %></td>
+    <td><%= link_to venue.name, edit_admin_venue_path(venue) %></td>
     <td><%= venue.street_address %></td>
     <td><%= venue.city %></td>
     <td><%= venue.country %></td>
