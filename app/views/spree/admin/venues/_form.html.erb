@@ -1,50 +1,72 @@
 <div class="row">
   <div class="four colums alpha">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: "fullwidth title" %>
-    <%= f.error_message_on :name %>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "fullwidth title" %>
+      <%= f.error_message_on :name %>
+    </div>
   </div>
   <div class="four colums alpha">
-    <%= f.label :street_address %>
-    <%= f.text_field :street_address, class: "fullwidth title" %>
-    <%= f.error_message_on :street_address %>
+    <div class="field">
+      <%= f.label :street_address %>
+      <%= f.text_field :street_address, class: "fullwidth title" %>
+      <%= f.error_message_on :street_address %>
+    </div>
   </div>
   <div class="four colums alpha">
-    <%= f.label :city %>
-    <%= f.text_field :city, class: "fullwidth title" %>
-    <%= f.error_message_on :city %>
+    <div class="field">
+      <%= f.label :city %>
+      <%= f.text_field :city, class: "fullwidth title" %>
+      <%= f.error_message_on :city %>
+    </div>
+  </div>
+  <div class="field"><div
+     class="four colums alpha">
+      <div class="field">
+        <%= f.label :country %>
+      </div>
+      <%= f.text_field :country, class: "fullwidth title" %>
+      <%= f.error_message_on :country %>
+    </div>
   </div>
   <div class="four colums alpha">
-    <%= f.label :country %>
-    <%= f.text_field :country, class: "fullwidth title" %>
-    <%= f.error_message_on :country %>
+    <div class="field">
+      <%= f.label :phone %>
+      <%= f.text_field :phone, class: "fullwidth title" %>
+      <%= f.error_message_on :phone %>
+    </div>
   </div>
   <div class="four colums alpha">
-    <%= f.label :phone %>
-    <%= f.text_field :phone, class: "fullwidth title" %>
-    <%= f.error_message_on :phone %>
+    <div class="field">
+      <%= f.label :state %>
+      <%= f.text_field :state, class: "fullwidth title" %>
+      <%= f.error_message_on :state %>
+    </div>
   </div>
   <div class="four colums alpha">
-    <%= f.label :state %>
-    <%= f.text_field :state, class: "fullwidth title" %>
-    <%= f.error_message_on :state %>
+    <div class="field">
+      <%= f.label :zip %>
+      <%= f.text_field :zip, class: "fullwidth title" %>
+      <%= f.error_message_on :zip %>
+    </div>
   </div>
   <div class="four colums alpha">
-    <%= f.label :zip %>
-    <%= f.text_field :zip, class: "fullwidth title" %>
-    <%= f.error_message_on :zip %>
+    <div class="field">
+      <%= f.label :website %>
+      <%= f.text_field :website, class: "fullwidth title" %>
+      <%= f.error_message_on :website %>
+    </div>
   </div>
   <div class="four colums alpha">
-    <%= f.label :website %>
-    <%= f.text_field :website, class: "fullwidth title" %>
-    <%= f.error_message_on :website %>
-  </div>
-  <div class="four colums alpha">
-    <%= f.label :hidden %>
-    <%= f.check_box :hidden, class: "fullwidth title" %>
-    <%= f.error_message_on :hidden %>
+    <div class="field">
+      <%= f.label :hidden %>
+      <%= f.check_box :hidden, class: "fullwidth title" %>
+      <%= f.error_message_on :hidden %>
+    </div>
   </div>
   <div class="form-buttons filter-actions actions">
-    <%= f.submit %>
+    <div class="field">
+      <%= f.submit %>
+    </div>
   </div>
 </div>
