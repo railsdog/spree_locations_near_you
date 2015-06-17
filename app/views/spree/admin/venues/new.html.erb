@@ -1,9 +1,17 @@
-<!-- added edit heading -->
-<!-- <%#= render partial: 'spree/admin/shared/content_header'%> needs to be fix -->
+<% content_for :page_title do %>
+  <%= Spree.t(:new_venue) %>
+  <div class="page-actions table-cell toolbar pull-right" data-hook="toolbar">
+    <ul class="inline-menu">
+        <li>
+          <a class="button fa fa-arrow-left" href="/admin/venues" icon="arrow-left">Back To venues List</a>
+        </li>
+    </ul>
+  </div>
+<% end %>
+
 
 <%= form_for @venue, url: {controller: 'venues', action: :create } do |f|  %>
 <div class="fieldset">
-  <div class="legend">New Venue</div>
   <%= render partial: 'form', locals: {f: f} %>
 </div>
 <% end %>

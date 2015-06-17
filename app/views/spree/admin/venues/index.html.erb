@@ -1,6 +1,15 @@
-<!-- <%#= render partial: 'spree/admin/shared/content_header'%> needs to be fix -->
+<% content_for :page_title do %>
+  <%= Spree.t(:venue) %>
+<% end %>
 
-<!-- <%#= pagninate @venues %> not working -->
+<% content_for :page_actions do %>
+  <%= button_link_to Spree.t(:new_venue), new_admin_venue_url, :class => "btn-success", :icon => 'add', :id => 'admin_venue_link' %>
+<% end %>
+
+<% content_for :table_filter_title do %>
+  <%= Spree.t(:search) %>
+<% end %>
+<%#= pagninate @venues %>
 
 <% if @venues.present? %>
   <%= render partial: 'venues' %>
