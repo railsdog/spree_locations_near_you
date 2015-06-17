@@ -23,6 +23,7 @@ describe Spree::Admin::VenuesController do
       it { expect(venue.address).not_to eq(nil) }
       it 'saves a new venue' do
         expect{ spree_post :create, venue: venue.attributes }.to change(Spree::Venue, :count).by(1)
+        end
       end
     end
 
@@ -37,7 +38,7 @@ describe Spree::Admin::VenuesController do
     it { expect(venue.reload.title).to eq(venue.attributes.title) }
     it { expect(response).to redirect_to(spree.edit_admin_venues_path) }
     it 'updates address field' do
-      expect{ spree_post :create, venue: venue.attributes }.to change(venue.address )
+      expect { spree_post :create, venue: venue.attributes }.to change(venue.address )
     end
   end
 
