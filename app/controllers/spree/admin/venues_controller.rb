@@ -2,9 +2,9 @@ module Spree
   module Admin
     class VenuesController < Spree::Admin::ResourceController
       before_action :find_store, only: [:edit, :update, :destroy]
+      before_filter :load_venues, only: [:index, :create, :update]
 
       def index
-        load_venues
         @venue = Spree::Venue.new
       end
 
@@ -15,8 +15,8 @@ module Spree
         @venue.set_full_address
         if @venue.update_attributes(venue_params)
           redirect_to edit_admin_venue_path(@venue)
+          flash[:success] = 'Venue was updated.'
         else
-          load_stores
           flash[:error] = 'There was an error.'
           render :index
         end
@@ -26,9 +26,9 @@ module Spree
         @venue = Spree::Venue.new(venue_params)
         @venue.set_full_address
         if @venue.save
-           redirect_to admin_venues_path
+          flash[:success] = 'Venue was created.'
+          redirect_to admin_venues_path
         else
-          load_venues
           flash[:error] = 'There was an error.'
           render :index
         end
@@ -36,6 +36,7 @@ module Spree
 
       def destroy
         @venue.destroy
+        flash[:success] = 'Venue was deleted.'
         redirect_to admin_venues_path
       end
 
@@ -47,7 +48,7 @@ module Spree
        end
 
        def find_store
-         @store = Spree::Store.find_by id: params[:id]
+         @store = Spree::Store.find(params[:id])
        end
 
        def venue_params
