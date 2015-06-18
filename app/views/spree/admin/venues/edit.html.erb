@@ -10,8 +10,7 @@
 <% end %>
 
 <%= form_for @venue, url: {controller: 'venues', action: :update, method: :post } do |f|  %>
-<div class="fieldset">
-  <div class="legend">Edit Venue "<%= @venue.name %>"</div>
-  <%= render partial: 'form', locals: {f: f} %>
-</div>
+  <div class="fieldset">
+    <%= render partial: 'form', locals: {f: f} %>
+  </div>
 <% end %>
