@@ -37,13 +37,6 @@ module Spree
         end
       end
 
-
-      def destroy
-        @venue.destroy
-        flash[:success] = Spree.t('success.deleted_venue')
-        redirect_to admin_venues_path
-      end
-
       private
 
       def load_venues
