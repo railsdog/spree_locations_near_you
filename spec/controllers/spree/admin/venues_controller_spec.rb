@@ -3,10 +3,6 @@ require 'spec_helper'
 describe Spree::Admin::VenuesController do
   stub_authorization!
   let(:venue) { FactoryGirl.create :spree_venue }
-  before do
-    user = mock_model(Spree.user_class, spree_api_key: 'fake')
-    controller.stub spree_current_user: user
-  end
 
   describe '#index' do
     before { spree_get :index }
@@ -21,9 +17,6 @@ describe Spree::Admin::VenuesController do
       before { spree_post :create, venue: venue.attributes }
       it { expect(response).to redirect_to(spree.admin_venues_path) }
       it { expect(venue.address).not_to eq(nil) }
-      it 'saves a new venue' do
-        expect{ spree_post :create, venue: venue.attributes }.to change(Spree::Venue, :count).by(1)
-        end
       end
     end
 
@@ -37,9 +30,6 @@ describe Spree::Admin::VenuesController do
     before { spree_put :update, id: venue.id, venue: venue.attributes }
     it { expect(venue.reload.title).to eq(venue.attributes.title) }
     it { expect(response).to redirect_to(spree.edit_admin_venues_path) }
-    it 'updates address field' do
-      expect { spree_post :create, venue: venue.attributes }.to change(venue.address )
-    end
   end
 
   describe '#destroy' do
