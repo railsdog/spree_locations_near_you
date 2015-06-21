@@ -4,6 +4,29 @@ module Spree
       before_action :find_venue, only: [:edit, :update, :destroy]
       before_filter :load_venues, only: [:index, :create, :update]
 
+      def create
+        @venue = Spree::Venue.new(venue_params)
+        @venue.set_full_address
+        if @venue.save
+          flash[:success] = 'Venue was created.'
+          redirect_to admin_venues_path
+        else
+          flash[:error] = 'There was an error.'
+          render :index
+        end
+      end
+      
+      def update
+        @venue.set_full_address
+        if @venue.update_attributes(venue_params)
+          redirect_to edit_admin_venue_path(@venue)
+          flash[:success] = 'Venue was updated.'
+        else
+          flash[:error] = 'There was an error.'
+          render :index
+        end
+      end
+
       private
 
       def load_venues
