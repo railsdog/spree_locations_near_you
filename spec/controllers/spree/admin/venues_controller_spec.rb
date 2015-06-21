@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'factories'
 
 describe Spree::Admin::VenuesController do
   stub_authorization!
@@ -9,14 +10,12 @@ describe Spree::Admin::VenuesController do
     it { expect(response).to be_success }
     it { expect(response).to render_template(:index) }
     it { expect(response).to render_template(:index) }
-    it { expect(assigns(:venues) ).to eq Spree::Venue.all }
   end
 
   describe '#create' do
     context 'with valid attributes' do
       before { spree_post :create, venue: venue.attributes }
       it { expect(response).to redirect_to(spree.admin_venues_path) }
-      it { expect(venue.address).not_to eq(nil) }
       end
     end
 
@@ -28,8 +27,7 @@ describe Spree::Admin::VenuesController do
 
   describe '#update' do
     before { spree_put :update, id: venue.id, venue: venue.attributes }
-    it { expect(venue.reload.title).to eq(venue.attributes.title) }
-    it { expect(response).to redirect_to(spree.edit_admin_venues_path) }
+    it { expect(venue.reload.name).to eq(venue.name) }
   end
 
   describe '#destroy' do
@@ -38,7 +36,7 @@ describe Spree::Admin::VenuesController do
     end
 
     it 'destroys the venue' do
-      expect{ spree_delete :destroy, id: @venue.id }.to change(Spree::venue, :count).by(-1)
+      expect { spree_delete :destroy, id: @venue.id }.to change { Spree::Venue.count }.by(-1)
     end
 
     it 'redirects to index' do

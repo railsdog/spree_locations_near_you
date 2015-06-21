@@ -3,8 +3,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../dummy/config/environment.rb',  __FILE__)
 
 require 'rspec/rails'
-require 'rspec/its'
-require 'ffaker'
+require 'faker'
 require 'factory_girl'
 require 'database_cleaner'
 require 'capybara/rspec'
@@ -45,5 +44,5 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  require 'support/config_preferences'
+  # require 'support/config_preferences'
 end
