@@ -7,5 +7,6 @@ FactoryGirl.define do
     f.country { Faker::Address.country }
     f.state { Faker::Address.state }
     f.zip { Faker::Address.zip_code }
+    f.address { "#{f.street_address}, #{f.city}, #{f.state} #{f.zip}, #{f.country}" }
   end
 end

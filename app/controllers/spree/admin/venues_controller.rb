@@ -3,29 +3,7 @@ module Spree
     class VenuesController < Spree::Admin::ResourceController
       before_action :find_venue, only: [:edit, :update, :destroy]
       before_filter :load_venues, only: [:index, :create, :update]
-
-      def create
-        @venue = Spree::Venue.new(venue_params)
-        @venue.set_full_address
-        if @venue.save
-          flash[:success] = 'Venue was created.'
-          redirect_to admin_venues_path
-        else
-          flash[:error] = 'There was an error.'
-          render :index
-        end
-      end
-      
-      def update
-        @venue.set_full_address
-        if @venue.update_attributes(venue_params)
-          redirect_to edit_admin_venue_path(@venue)
-          flash[:success] = 'Venue was updated.'
-        else
-          flash[:error] = 'There was an error.'
-          render :index
-        end
-      end
+      after_action :set_full_address, only: [:create, :update]
 
       private
 
@@ -40,6 +18,10 @@ module Spree
 
       def venue_params
         params.require(:venue).permit( :name, :address, :street_address, :city, :country, :phone, :state, :website, :zip, :hidden)
+      end
+
+      def set_full_address
+        @venue.set_full_address
       end
     end
   end
