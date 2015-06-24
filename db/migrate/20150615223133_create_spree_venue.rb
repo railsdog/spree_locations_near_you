@@ -2,7 +2,11 @@ class CreateSpreeVenue < ActiveRecord::Migration
   def change
     create_table :spree_venues do |t|
       t.string :name, null: false
+      t.string :venue_hours
+      t.integer :store_code
       t.string :address
+      t.sting :rank
+      t.string :phone
       t.string :street_address
       t.string :city
       t.string :country
