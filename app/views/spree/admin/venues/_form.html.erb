@@ -8,8 +8,44 @@
   </div>
   <div class="four colums alpha">
     <div class="field">
+      <%= f.label :venue_hours %>
+      <%= f.text_field :venue_hours, class: "fullwidth title" %>
+      <%= f.error_message_on :venue_hours %>
+    </div>
+  </div>
+  <div class="four colums alpha">
+    <div class="field">
+      <%= f.label :store_code %>
+      <%= f.text_field :store_code, class: "fullwidth title" %>
+      <%= f.error_message_on :store_code %>
+    </div>
+  </div>
+  <div class="four colums alpha">
+    <div class="field">
+      <%= f.label :venue_rank %>
+      <%= f.select :rank, ["sliver","gold", "platinum"], selected: @venue.rank, class: "fullwidth title" %>
+      <%= f.error_message_on :rank %>
+    </div>
+  </div>
+
+  <div class="four colums alpha">
+    <div class="field">
+      <%= f.label :phone %>
+      <%= f.text_field :phone, class: "fullwidth" %>
+      <%= f.error_message_on :phone %>
+    </div>
+  </div>
+  <div class="four colums alpha">
+    <div class="field">
+      <%= f.label :website %>
+      <%= f.text_field :website, class: "fullwidth title" %>
+      <%= f.error_message_on :website %>
+    </div>
+  </div>
+  <div class="four colums alpha">
+    <div class="field">
       <%= f.label :street_address %>
-      <%= f.text_field :street_address, class: "fullwidth title" %>
+      <%= f.text_field :street_address, class: "fullwidth" %>
       <%= f.error_message_on :street_address %>
     </div>
   </div>
@@ -29,13 +65,6 @@
   </div>
   <div class="four colums alpha">
     <div class="field">
-      <%= f.label :phone %>
-      <%= f.text_field :phone, class: "fullwidth title" %>
-      <%= f.error_message_on :phone %>
-    </div>
-  </div>
-  <div class="four colums alpha">
-    <div class="field">
       <%= f.label :state %>
       <%= f.text_field :state, class: "fullwidth title" %>
       <%= f.error_message_on :state %>
@@ -46,13 +75,6 @@
       <%= f.label :zip %>
       <%= f.text_field :zip, class: "fullwidth title" %>
       <%= f.error_message_on :zip %>
-    </div>
-  </div>
-  <div class="four colums alpha">
-    <div class="field">
-      <%= f.label :website %>
-      <%= f.text_field :website, class: "fullwidth title" %>
-      <%= f.error_message_on :website %>
     </div>
   </div>
   <div class="four colums alpha">
