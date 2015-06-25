@@ -1,0 +1,11 @@
+<div id="wrapper">
+  <% @venues_near_by.try(:each) do |v| %>
+    <%= v.name %>
+    <%= v.store_code %>
+    <%= v.rank %>
+    <%= v.address %>
+    <%= v.venue_hours %>
+  <% end %>
+</div>
+
+<%= render partial: "map" %>
