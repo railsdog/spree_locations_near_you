@@ -6,9 +6,12 @@ module Spree
 
     def venues_near_by
       user_location = Spree::Venue.create(address: params[:zipcode])
-      @venues_near_by = Spree::Venue.by_distance_from_latlong(user_location.latitude, user_location.longitude)
+      if !user_location.nil?
+        @venues_near_by = Spree::Venue.by_distance_from_latlong(user_location.latitude, user_location.longitude)
+      else
+        # what to do if geocoder does not find an addres?
+      end
       render "index"
     end
   end
 end
-# needs to be move into the gem
