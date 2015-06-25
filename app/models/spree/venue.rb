@@ -5,7 +5,7 @@ class Spree::Venue < ActiveRecord::Base
   validates :name, presence: true
 
   def set_full_address
-    self.address = "#{street_address}, #{city}, #{state} #{zip}, #{country}"
+    self.address = "#{street_address} #{city} #{state} #{zip} #{country}"
     self.save
   end
 end
