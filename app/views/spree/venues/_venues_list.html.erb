@@ -1,0 +1,37 @@
+<div id="venues-near-by" >
+  <% @venues_near_by.try(:each) do |v| %>
+    <h3><%= v.name %></h3>
+    <p class="store-code"><%= v.store_code %></p>
+    <p class="rank"><%= v.rank %></p>
+    <p><%= v.address %></p>
+    <p><%= v.phone %></p>
+    <p><%= v.venue_hours %></p>
+    <p><%= link_to v.website %></p>
+    <p>Get Directions</p>
+    <script>
+      var map = new GMaps({
+        el: '#map',
+        lat: 37.7701204,
+        lng: -122.423422,
+        zoom: 11
+      });
+       var mark = map.addMarker({
+       lat: <%= v.latitude %>,
+       lng: <%= v.longitude %>,
+     });
+    </script>
+<% end %>
+</div>
+
+<script id="venues-template" type="text/x-handlebars-template">
+  {{#each this}}
+    <h4>{{name}}</h4>
+    <p class="store-code">{{store_code}}</p>
+    <p class="rank">{{rank}}</p>
+    <p>{{address}}</p>
+    <p>{{phone}}</p>
+    <p>{{hours}}</p>
+    <p><a href={{website}}>Visit Store Website</a></p>
+    <p>Get Directions</p>
+  {{/each}}
+</script>

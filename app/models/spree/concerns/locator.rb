@@ -15,7 +15,7 @@ module Spree
 
         select("#{table_name}.*, #{miles_apart} miles")
         .where("#{table_name}.latitude IS NOT NULL")
-        .where("#{table_name}.latitude IS NOT NULL")
+        .where("#{table_name}.longitude IS NOT NULL")
         .order("#{miles_apart} ASC")
         }
       end
