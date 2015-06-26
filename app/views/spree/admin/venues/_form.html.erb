@@ -58,8 +58,8 @@
   </div>
   <div class="four colums alpha">
     <div class="field">
-      <%= f.label :country %>
-      <%= f.text_field :country, class: "fullwidth title" %>
+      <%= f.label :country, Spree.t(:country) %>
+      <span id="country"><%= f.collection_select :country, available_countries, :name, :name, {}, { class: 'select2 fullwidth' } %></span>
       <%= f.error_message_on :country %>
     </div>
   </div>
