@@ -11,17 +11,18 @@
     <script>
       var map = new GMaps({
         el: '#map',
-        lat: 37.7701204,
-        lng: -122.423422,
+        lat: <%= session[:location][0] %>,
+        lng: <%= session[:location][1] %>,
         zoom: 11
       });
-       var mark = map.addMarker({
+      map.addMarker({
        lat: <%= v.latitude %>,
        lng: <%= v.longitude %>,
      });
     </script>
 <% end %>
 </div>
+    <%= binding.pry %>
 
 <script id="venues-template" type="text/x-handlebars-template">
   {{#each this}}

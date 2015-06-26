@@ -1,28 +1,27 @@
 module Spree
   class VenuesController < Spree::BaseController
     def index
-      @venues_near_by = nil
-      user_location = Geocoder.coordinates(params[:zipcode].first)
-      @venues = Spree::Venue.by_distance_from_latlong(user_location[0], user_location[1])
+      # user_location = Geocoder.coordinates(params[:zipcode].first)
+      user_location = Spree::Venue.create(address: params[:zipcode] ) 
+
+      session[:location] = [user_location.latitude, user_location.longitude]
+      @venues = Spree::Venue.by_distance_from_latlong(user_location.latitude, user_location.longitude)
+
       respond_to do |format|
         format.html do
           if user_location.present?
-           # @venues.each do  |v| 
-           #    if v.rank == "sliver" && v.miles < 50 
-           #     @venues_near_by + [v]
-           #    end
-            # binding.pry
-            @venues_near_by = @venues
-            # end
+            @venues_near_by = @venues.select {|v| v.miles < 50 }
+            user_location.destroy
           render :index
           else
             #come back and do something here.
             # render json:{ message: "There are no stores within 50 miles"}
           end
         end
+
         format.json do
           if user_location.present?
-            @venues_near_by = Spree::Venue.by_distance_from_latlong(user_location[0], user_location[1])
+            @venues_near_by = Spree::Venue.by_distance_from_latlong(session[:location])
             @venues_near_by.select {|v| v.rank == "sliver" && v.miles < 50 }
             @venues_near_by = @venues_near_by.select {|v| v.miles < 50 }
           render json:{ venues: @venues_near_by, user_location: user_location}
@@ -35,7 +34,7 @@ module Spree
 
     def fliter_venues_near_by
       venues_list = []
-      user_location = Geocoder.coordinates("94103")
+      user_location = Geocoder.coordinates(session[:user_location])
       venues = Spree::Venue.by_distance_from_latlong(user_location[0], user_location[1])
 
       if params[:sliver].present?
@@ -55,6 +54,15 @@ module Spree
       else 
         render json:{ message: "There are no stores within 50 miles", user_location: user_location, venues: nil}
       end
+    end
+
+    protected
+
+    def set_user_location(location)
+      session[:user_location] = location
+    end
+    def user_location
+      session[:user_location]
     end
   end
 end
