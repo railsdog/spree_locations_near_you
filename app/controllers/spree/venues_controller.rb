@@ -27,7 +27,7 @@ module Spree
             @venues_near_by = @venues_near_by.select {|v| v.miles < 50 }
           render json:{ venues: @venues_near_by, user_location: user_location}
           else
-            render json:{ message: "There are no stores within 50 miles"}
+            render json:{ message: "There are no stores within 50 miles", venues: nil}
           end
         end
       end
@@ -53,7 +53,7 @@ module Spree
       if venues_list.present?
         render json:{ venues: venues_list, user_location: user_location}
       else 
-        render json:{ venues: "There are no stores within 50 miles", user_location: user_location}
+        render json:{ message: "There are no stores within 50 miles", user_location: user_location, venues: nil}
       end
     end
   end
