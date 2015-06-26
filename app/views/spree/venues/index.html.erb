@@ -2,46 +2,29 @@
     <script src="http://maps.google.com/maps/api/js?sensor=false&region=US"></script>
 <% end %>
 
-<h1>Locations</h1>
-<div id="wrapper">
-  <div id="venues-near-by" >
-    <% @venues_near_by.try(:each) do |v| %>
-      <h4><%= v.name %></h4>
-      <p class="store-code"><%= v.store_code %></p>
-      <p class="rank"><%= v.rank %></p>
-      <p><%= v.address %></p>
-      <p><%= v.phone %></p>
-      <p><%= v.venue_hours %></p>
-      <p><%= link_to v.website %></p>
-      <p>Get Directions</p>
-  <% end %>
+<div class="venue-search">
+  <h1>Locations</h1>
+<div class="row">
+  <div class="col-md-6">
+    <form id="venues">
+      <input type="text" name="zipcode">
+      <input type="submit" value="fart" class="venue-search-btn">
+      <!-- <i class="glyphicon glyphicon-repeat glyphicon-spin"></i> -->
+
+    </form>
+  </div>
+  <div class="col-md-6">
+    <% venue_ranks.each do |rank| %>
+      <input class="rank" type="radio" name="rank" value="<%= rank %>"><%= rank.capitalize  %></input>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <%= render partial: "map" %>
+  </div>
+  <div class="col-md-4">
+    <%= render partial: "venues_list" %>
   </div>
 </div>
 
-
-<% venue_ranks.each do |rank| %>
-  <input class="rank" type="radio" name="rank" value="<%= rank %>"><%= rank.capitalize  %></input>
-<% end %>
-
-<%= render partial: "map" %>
-
-<form id="venues">
-  <input type="text" name="zipcode">
-  <input type="submit" value="search">
-</form>
-
-
-<script id="venues-template" type="text/x-handlebars-template">
-  <div id="venues">
-    {{#each this}}
-      <h4>{{name}}</h4>
-      <p class="store-code">{{store_code}}</p>
-      <p class="rank">{{rank}}</p>
-      <p>{{address}}</p>
-      <p>{{phone}}</p>
-      <p>{{hours}}</p>
-      <p><a href={{website}}>Visit Store Website</a></p>
-      <p>Get Directions</p>
-    {{/each}}
-  </div>
-</script>
