@@ -23,7 +23,7 @@
   <div class="four colums alpha">
     <div class="field">
       <%= f.label :venue_rank %>
-      <%= f.select :rank, ["sliver","gold", "platinum"], selected: @venue.rank, class: "fullwidth title" %>
+      <%= f.select :rank, venue_ranks, selected: @venue.rank, class: "fullwidth title" %>
       <%= f.error_message_on :rank %>
     </div>
   </div>

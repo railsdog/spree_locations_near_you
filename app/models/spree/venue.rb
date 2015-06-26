@@ -1,4 +1,4 @@
-class Spree::Venue < ActiveRecord::Base
+class Spree::Venue < Spree::Base
   include Spree::Concerns::Locator
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
