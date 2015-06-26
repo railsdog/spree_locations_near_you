@@ -8,4 +8,31 @@
   <% end %>
 </div>
 
+<h1>Locations</h1>
+<ul id="venues-near-by" >
+  
+</ul>
+
+<input class="rank" type="checkbox" name="sliver">sliver<br>
+<input class="rank" type="checkbox" name="gold">gold
+<input class="rank" type="checkbox" name="platinum">platinum
+
 <%= render partial: "map" %>
+
+<form id="venues">
+  <input type="text" name="zipcode">
+  <input type="submit" value="searh">
+</form>
+
+
+<script id="venues-template" type="text/x-handlebars-template">
+  <div id="venues">
+    {{#each this}}
+      <div>{{name}}</div>
+      <div>{{website}}</div>
+      <div>{{hours}}</div>
+      <div>{{phone}}</div>
+      <div>{{rank}}</div>
+    {{/each}}
+  </div>
+</script>

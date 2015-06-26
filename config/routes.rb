@@ -3,5 +3,6 @@ Spree::Core::Engine.routes.draw do
     resources :venues
   end
    get "/venues/near_by", to: "venues#venues_near_by", as: "venues_near_by"
+   get "/venues/fliter_venues_near_by", to: "venues#fliter_venues_near_by", as: "fliter_venues_near_by"
     resources :venues
 end
