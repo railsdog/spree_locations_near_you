@@ -1,16 +1,27 @@
 module Spree
   class VenuesController < Spree::BaseController
+
+
     def index
-      @venues = Spree::Venue.all
-    end
-    # miles is a ghost field check result object.miles
-    def venues_near_by
       user_location = Geocoder.coordinates(params[:zipcode].first)
-      if !user_location.blank?
-        @venues_near_by = Spree::Venue.by_distance_from_latlong(user_location[0], user_location[1])
-      render json:{ venues: @venues_near_by, user_location: user_location}
-      else
-        render json:{ message: "There are no stores within 50 miles"}
+
+      respond_to do |format|
+        format.html do
+          if user_location.present?
+            @venues_near_by = Spree::Venue.by_distance_from_latlong(user_location[0], user_location[1])
+          render :index
+          else
+            # render json:{ message: "There are no stores within 50 miles"}
+          end
+        end
+        format.json do
+          if user_location.present?
+            @venues_near_by = Spree::Venue.by_distance_from_latlong(user_location[0], user_location[1])
+          render json:{ venues: @venues_near_by, user_location: user_location}
+          else
+            render json:{ message: "There are no stores within 50 miles"}
+          end
+        end
       end
     end
 

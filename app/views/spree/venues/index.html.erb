@@ -1,17 +1,20 @@
+<h1>Locations</h1>
 <div id="wrapper">
-  <% @venues_near_by.try(:each) do |v| %>
-    <%= v.name %>
-    <%= v.store_code %>
-    <%= v.rank %>
-    <%= v.address %>
-    <%= v.venue_hours %>
+  <div id="venues-near-by" >
+    <% @venues_near_by.try(:each) do |v| %>
+      <h4><%= v.name %></h4>
+      <p class="store-code"><%= v.store_code %></p>
+      <p class="rank"><%= v.rank %></p>
+      <p><%= v.address %></p>
+      <p><%= v.phone %></p>
+      <p><%= v.venue_hours %></p>
+      <p><%= link_to v.website %></p>
+      <p>Get Directions</p>
   <% end %>
+  </div>
 </div>
 
-<h1>Locations</h1>
-<ul id="venues-near-by" >
   
-</ul>
 
 <input class="rank" type="checkbox" name="sliver">sliver<br>
 <input class="rank" type="checkbox" name="gold">gold
@@ -21,18 +24,21 @@
 
 <form id="venues">
   <input type="text" name="zipcode">
-  <input type="submit" value="searh">
+  <input type="submit" value="search">
 </form>
 
 
 <script id="venues-template" type="text/x-handlebars-template">
   <div id="venues">
     {{#each this}}
-      <div>{{name}}</div>
-      <div>{{website}}</div>
-      <div>{{hours}}</div>
-      <div>{{phone}}</div>
-      <div>{{rank}}</div>
+      <h4>{{name}}</h4>
+      <p class="store-code">{{store_code}}</p>
+      <p class="rank">{{rank}}</p>
+      <p>{{address}}</p>
+      <p>{{phone}}</p>
+      <p>{{hours}}</p>
+      <p><a href={{website}}>Visit Store Website</a></p>
+      <p>Get Directions</p>
     {{/each}}
   </div>
 </script>
