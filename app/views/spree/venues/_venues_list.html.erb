@@ -1,14 +1,21 @@
 <div id="locationSession"><%= session[:location] %></div>
 <div id="venues-near-by" >
+
   <% @venues_near_by.try(:each) do |v| %>
-    <h3><%= v.name %></h3>
-    <p class="store-code"><%= v.store_code %></p>
-    <p class="rank"><%= v.rank %></p>
-    <p><%= v.address %></p>
-    <p><%= v.phone %></p>
-    <p><%= v.venue_hours %></p>
-    <p><%= link_to v.website %></p>
-    <p>Get Directions</p>
+    <div class="venue-box">
+      <label>
+        <input type="checkbox">
+      </label><span>save sa my default store</span>
+      <h3><%= v.name %></h3>
+      <p class="store-code">Store Code:  <%= v.store_code %></p>
+      <p class="rank <%= v.rank %>"><%= v.rank %></p>
+      <p><%= v.street_address %></p>
+      <p><%= v.city %>, <%= v.state %> <%= v.zip %></p>
+      <p class="phone"><%= v.phone %></p>
+      <p><%= v.venue_hours %></p>
+      <p class="store-wesite"><%= link_to "Visit Store Website", "http:/#{v.website}" %></p>
+      <p class="directions">Get Directions</p>
+    </div>
     <script>
       var map = new GMaps({
         el: '#map',
@@ -25,13 +32,16 @@
 </div>
 <script id="venues-template" type="text/x-handlebars-template">
   {{#each this}}
-    <h4>{{name}}</h4>
-    <p class="store-code">{{store_code}}</p>
-    <p class="rank">{{rank}}</p>
-    <p>{{address}}</p>
-    <p>{{phone}}</p>
-    <p>{{hours}}</p>
-    <p><a href={{website}}>Visit Store Website</a></p>
-    <p>Get Directions</p>
+    <div class="venue-box">
+      <h3>{{name}}</h3>
+      <p class="store-code">Store Code: {{store_code}}</p>
+      <p class="rank">{{rank}}</p>
+      <p>{{street_address}}</p>
+      <p>{{city}}, {{state}} {{zip}}</p>
+      <p class="phone">{{phone}}</p>
+      <p>{{hours}}</p>
+      <p class="store-wesite"><a href={{website}}>Visit Store Website</a></p>
+      <p class="directions">Get Directions</p>
+    </div>
   {{/each}}
 </script>

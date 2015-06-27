@@ -1,24 +1,29 @@
 <div class="venue-search">
-  <h1>Locations</h1>
+  <h1>where to buy gather & gown styles</h1>
 <div class="row">
-  <div class="col-md-6">
-    <form id="searchVenues">
-      <input type="text" name="zipcode">
-      <button type="submit"><i class="glyphicon glyphicon-repeat"></i></button>
-    </form>
-  </div>
-  <div class="col-md-6">
-    <label>
-      <input class="rank" type="checkbox" name="sliver" value="sliver"/>sliver
-    </label><span>sliver</span>
-    <label>
-      <input class="rank" type="checkbox" name="gold" value="gold"/>gold
-    </label><span>gold</span>
-    <label>
-      <input class="rank" type="checkbox" name="platinum" value="platinum"/>platinum
-    </label><span>platium</span>
-  </div>
-</div>
+  <div class="search-control">
+    <div class="col-md-7">
+      <form id="searchVenues">
+        <input type="text" name="zipcode">
+        <button class="venue-search-btn" type="submit"><i class="fa fa-search"></i></button>
+      </form>
+    </div> <!-- col-md-7 -->
+    <div class="col-md-5">
+      <div class="rank-checkboxes">
+        <h6>store tiers <i class="fa fa-info"></i></h6>
+        <label>
+          <input class="rank" type="checkbox" name="sliver" value="sliver"/>
+        </label><span>sliver</span>
+        <label>
+          <input class="rank" type="checkbox" name="gold" value="gold"/>
+        </label><span>gold</span>
+        <label>
+          <input class="rank" type="checkbox" name="platinum" value="platinum"/>
+        </label><span>platium</span>
+      </div> <!-- rank-checkboxes -->
+    </div> <!-- col-md-5 -->
+  </div> <!-- .search-control -->
+</div> <!-- row -->
 <div class="row">
   <div class="col-md-8">
     <%= render partial: "map" %>

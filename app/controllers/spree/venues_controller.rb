@@ -2,16 +2,21 @@ module Spree
   class VenuesController < Spree::BaseController
     def index
       # user_location = Geocoder.coordinates(params[:zipcode].first)
-      user_location = Spree::Venue.create(address: params[:zipcode] ) 
-
-      session[:location] = [user_location.latitude, user_location.longitude]
-      # session[:zipcode] = params[:zipcode]
-      @venues = Spree::Venue.by_distance_from_latlong(user_location.latitude, user_location.longitude)
+      if params[:zipcode].present? 
+        user_location = Spree::Venue.create(address: params[:zipcode] ) 
+        session[:location] = [user_location.latitude, user_location.longitude]
+        @venues = Spree::Venue.by_distance_from_latlong(user_location.latitude, user_location.longitude)
+      elsif session[:location].present?
+        user_location = Spree::Venue.create(address: session[:location] )
+        @venues = Spree::Venue.by_distance_from_latlong(user_location.latitude, user_location.longitude)
+      else
+        @venues_near_by = Spree::Venue.all.limit(5)
+      end
 
       respond_to do |format|
         format.html do
           if user_location.present?
-            @venues_near_by = @venues.select {|v| v.miles < 50 }
+            @venues_near_by = @venues.limit(5).select {|v| v.miles < 50 }
             user_location.destroy
           render :index
           else
@@ -25,7 +30,7 @@ module Spree
             @venues_near_by = @venues.limit(5).select {|v| v.miles < 50 }
             render json:{ venues: @venues_near_by, user_location: session[:location]}
           else
-            render json:{ message: "There are no stores within 50 miles", venues: nil}
+            render json:{ message: "There are no stores within 50 miles", venues: @venues_near_by}
           end
         end
       end
@@ -59,7 +64,7 @@ module Spree
       if venues_list.present?
         render json:{ venues: venues_list, user_location: user_location}
       else 
-        render json:{ message: "There are no stores within 50 miles", user_location: user_location, venues: nil}
+        render json:{ message: "There are no stores within 50 miles", user_location: user_location, venues: venues_list}
       end
     end
   end

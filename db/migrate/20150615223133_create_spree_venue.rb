@@ -3,7 +3,7 @@ class CreateSpreeVenue < ActiveRecord::Migration
     create_table :spree_venues do |t|
       t.string :name, null: false
       t.string :venue_hours
-      t.integer :store_code
+      t.string :store_code
       t.string :address
       t.string :rank, default: "sliver"
       t.string :phone
