@@ -1,4 +1,4 @@
-<div id="locationSession"><%= session[:location] %></div>
+<div id="locationSession" class="hide"><%= session[:location] %></div>
 <div id="venues-near-by" >
 
   <% @venues_near_by.try(:each) do |v| %>
@@ -33,6 +33,9 @@
 <script id="venues-template" type="text/x-handlebars-template">
   {{#each this}}
     <div class="venue-box">
+      <label>
+        <input type="checkbox">
+      </label><span>save sa my default store</span>
       <h3>{{name}}</h3>
       <p class="store-code">Store Code: {{store_code}}</p>
       <p class="rank" id={{rank}}>{{rank}}</p>

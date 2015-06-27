@@ -2,22 +2,24 @@
   <h1>where to buy gather & gown styles</h1>
 <div class="row">
   <div class="search-control">
-    <div class="col-md-7">
+    <div class="col-md-6">
       <form id="searchVenues">
         <input type="text" name="zipcode">
         <button class="venue-search-btn" type="submit"><i class="fa fa-search"></i></button>
       </form>
     </div> <!-- col-md-7 -->
-    <div class="col-md-5">
+    <div class="col-md-6">
       <div class="rank-checkboxes">
-        <h6>store tiers <i class="fa fa-info"></i></h6>
-        <label>
+      <%= render partial: 'tier_alert' %>
+
+        <h6 id="storeTiers">STORE TIERS <i class="fa fa-info"></i></h6>
+        <label class="clicked">
           <input class="rank" type="checkbox" name="sliver" value="sliver"/>
         </label><span>sliver</span>
-        <label>
+        <label class="clicked">
           <input class="rank" type="checkbox" name="gold" value="gold"/>
         </label><span>gold</span>
-        <label>
+        <label class="clicked">
           <input class="rank" type="checkbox" name="platinum" value="platinum"/>
         </label><span>platium</span>
       </div> <!-- rank-checkboxes -->
