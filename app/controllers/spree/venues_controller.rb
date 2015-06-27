@@ -9,6 +9,9 @@ module Spree
       elsif session[:location].present?
         user_location = Spree::Venue.create(address: session[:location] )
         @venues = Spree::Venue.by_distance_from_latlong(user_location.latitude, user_location.longitude)
+      elsif session[:location].nil?
+        location = Spree::Venue.create(address: "10005" )
+        session[:location] = [location.latitude, location.longitude]
       else
         @venues_near_by = Spree::Venue.all.limit(5)
       end
