@@ -1,3 +1,4 @@
+<div id="locationSession"><%= session[:location] %></div>
 <div id="venues-near-by" >
   <% @venues_near_by.try(:each) do |v| %>
     <h3><%= v.name %></h3>
@@ -22,8 +23,6 @@
     </script>
 <% end %>
 </div>
-    <%= binding.pry %>
-
 <script id="venues-template" type="text/x-handlebars-template">
   {{#each this}}
     <h4>{{name}}</h4>
