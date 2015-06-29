@@ -1,0 +1,16 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:editing_venue) %> '<%= @venue.name %>'
+  <div class="page-actions table-cell toolbar pull-right" data-hook="toolbar">
+    <ul class="inline-menu">
+        <li>
+          <a class="button fa fa-arrow-left" href="/admin/venues" icon="arrow-left">Back To venues List</a>
+        </li>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @venue, url: {controller: 'venues', action: :update, method: :post } do |f|  %>
+  <div class="fieldset">
+    <%= render partial: 'form', locals: {f: f} %>
+  </div>
+<% end %>

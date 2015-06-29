@@ -1,0 +1,14 @@
+<% venues.each do | venue| %>
+  <tr>
+    <td><%= link_to venue.name, edit_admin_venue_path(venue) %></td>
+    <td><%= venue.address %></td>
+    <td><%= venue.phone %></td>
+    <td><%= venue.venue_hours %></td>
+    <td><%= venue.website %></td>
+    <td><%= venue.rank %></td>
+    <td data-hook="admin_venues_index_row_actions" class="actions actions-2 text-right">
+      <%= link_to_edit venue, :no_text => true %>
+      <%= link_to_delete venue, :no_text => true %>
+    </td>
+  </tr>
+<% end %>

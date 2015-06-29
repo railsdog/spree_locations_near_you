@@ -1,0 +1,15 @@
+<table id="venues">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Full Address</th>
+      <th>Hours</th>
+      <th>Phone #</th>
+      <th>Website</th>
+      <th>Rank</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'venue', locals: { venues: @venues } %>
+  </tbody>
+</table>

@@ -2,4 +2,16 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  spree:
+    venue:
+      index: Venues
+en:
+  spree:
+    error: There was an error.
+
+en:
+  spree:
+    success:
+      created_venue: Venue was created.
+      updated_venue: Venue was updated.
+      deleted_venue: Venue was deleted.

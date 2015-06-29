@@ -1,0 +1,21 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:venue) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <%= button_link_to Spree.t(:new_venue), new_admin_venue_url, :class => "btn-success", :icon => 'add', :id => 'admin_venue_link' %>
+<% end %>
+
+<% content_for :table_filter_title do %>
+  <%= Spree.t(:search) %>
+<% end %>
+
+<%#= pagninate @venues %>
+
+<% if @venues.present? %>
+  <%= render partial: 'venues' %>
+<% else %>
+  <div class="no-objects-found">
+    No venues found!
+  </div>
+<% end %>
