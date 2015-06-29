@@ -2,8 +2,8 @@ module Spree
   class VenuesController < Spree::BaseController
     def index
       # user_location = Geocoder.coordinates(params[:zipcode].first)
-      if params[:zipcode].present? 
-        user_location = Spree::Venue.create(address: params[:zipcode] ) 
+      if params[:zipcode].present?
+        user_location = Spree::Venue.create(address: params[:zipcode] )
         session[:location] = [user_location.latitude, user_location.longitude]
         @venues = Spree::Venue.by_distance_from_latlong(user_location.latitude, user_location.longitude)
       elsif session[:location].present?
@@ -52,21 +52,15 @@ module Spree
       venues_list = []
       user_location = session[:location]
       venues = Spree::Venue.by_distance_from_latlong(user_location[0], user_location[1])
-      if params[:sliver].present?
-         sliver_near_by = venues.select {|v| v.rank == "sliver" && v.miles < 51}
-         sliver_near_by.present? if venues_list += sliver_near_by
+
+      if params[:rank].present?
+         venues_near_by = venues.select {|v| params[:rank].keys.include?(v.rank) && v.miles < 51}
+         venues_near_by.present? if venues_list += venues_near_by
       end
-      if params[:gold].present?
-         gold_near_by = venues.select {|v| v.rank == "gold" && v.miles < 51}
-         gold_near_by.present? if venues_list += gold_near_by
-      end
-      if params[:platinum].present?
-         platinum_near_by = venues.select {|v| v.rank == "platinum" && v.miles < 51}
-         platinum_near_by.present? if venues_list += platinum_near_by
-      end
+
       if venues_list.present?
         render json:{ venues: venues_list, user_location: user_location}
-      else 
+      else
         render json:{ message: "There are no stores within 50 miles", user_location: user_location, venues: venues_list}
       end
     end
