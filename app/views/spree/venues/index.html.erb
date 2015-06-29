@@ -1,4 +1,4 @@
-<div class="venue-search">
+<div class="venue-search noselect">
   <h1>where to buy gather & gown styles</h1>
 <div class="row">
   <div class="search-control">
@@ -15,7 +15,7 @@
         <h6 id="storeTiers">STORE TIERS <i class="fa fa-info"></i></h6>
         <label class="checked">
           <i class="fa fa-check"></i>
-          <input class="rank" type="checkbox" name="platium" value="sliver"/>
+          <input class="rank" type="checkbox" name="platinum" value="platinum"/>
         </label><span>platium</span>
         <label class="checked">
           <i class="fa fa-check"></i>
@@ -23,18 +23,20 @@
         </label><span>gold</span>
         <label class="checked">
           <i class="fa fa-check"></i>
-          <input class="rank" type="checkbox" name="sliver" value="platinum"/>
+          <input class="rank" type="checkbox" name="sliver" value="sliver"/>
         </label><span>sliver</span>
       </div> <!-- rank-checkboxes -->
     </div> <!-- col-md-5 -->
   </div> <!-- .search-control -->
 </div> <!-- row -->
-<div class="row">
-  <div class="col-md-8">
-    <%= render partial: "map" %>
-  </div>
-  <div class="col-md-4">
-    <%= render partial: "venues_list" %>
+<div class="container"> 
+  <div class="row">
+    <div class="col-md-8">
+      <%= render partial: "map" %>
+    </div>
+    <div class="col-md-4">
+      <%= render partial: "venues_list" %>
+    </div>
   </div>
 </div>
 
