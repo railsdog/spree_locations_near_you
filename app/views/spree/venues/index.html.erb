@@ -13,23 +13,17 @@
       <%= render partial: 'tier_alert' %>
 
         <h6 id="storeTiers">STORE TIERS <i class="fa fa-info"></i></h6>
-        <label class="checked">
-          <i class="fa fa-check"></i>
-          <input class="rank" type="checkbox" name="platinum" value="platinum"/>
-        </label><span>platium</span>
-        <label class="checked">
-          <i class="fa fa-check"></i>
-          <input class="rank" type="checkbox" name="gold" value="gold"/>
-        </label><span>gold</span>
-        <label class="checked">
-          <i class="fa fa-check"></i>
-          <input class="rank" type="checkbox" name="sliver" value="sliver"/>
-        </label><span>sliver</span>
+        <% venue_ranks.each do |rank| %>
+          <label class="checked">
+            <i class="fa fa-check"></i>
+            <input class="rank" type="checkbox" name="rank[<%= rank %>]" value="<%= rank %>"/>
+          </label><span><%= rank.capitalize %></span>
+        <% end %>
       </div> <!-- rank-checkboxes -->
     </div> <!-- col-md-5 -->
   </div> <!-- .search-control -->
 </div> <!-- row -->
-<div class="container"> 
+<div class="container">
   <div class="row">
     <div class="col-md-8">
       <%= render partial: "map" %>

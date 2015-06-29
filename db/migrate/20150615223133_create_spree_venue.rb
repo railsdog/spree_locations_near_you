@@ -5,7 +5,7 @@ class CreateSpreeVenue < ActiveRecord::Migration
       t.string :venue_hours
       t.string :store_code
       t.string :address
-      t.string :rank, default: "sliver"
+      t.string :rank, default: "silver"
       t.string :phone
       t.string :street_address
       t.string :city
