@@ -1,4 +1,4 @@
-//= require spree/frontend/gmap
+//= require handlebars
 
 $(document).ready(function(){
   if ($("#map")) {
