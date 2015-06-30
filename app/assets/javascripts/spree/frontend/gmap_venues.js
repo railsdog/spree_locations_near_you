@@ -1,3 +1,5 @@
+//= require spree/frontend/gmap
+
 $(document).ready(function(){
   if ($("#map")) {
   function GmapVenues () {
