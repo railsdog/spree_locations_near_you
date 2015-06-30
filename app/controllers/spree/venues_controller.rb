@@ -53,6 +53,7 @@ module Spree
       user_location = session[:location]
       venues = Spree::Venue.by_distance_from_latlong(user_location[0], user_location[1])
 
+      # Specific to G&G
       if params[:rank].present?
          venues_near_by = venues.select {|v| params[:rank].keys.include?(v.rank) && v.miles < 51}
          venues_near_by.present? if venues_list += venues_near_by
