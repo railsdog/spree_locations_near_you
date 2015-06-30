@@ -1,3 +1,4 @@
+//= require spree/frontend/google
 "use strict";
 (function(root, factory) {
   if(typeof exports === 'object') {
