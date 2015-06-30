@@ -8,15 +8,4 @@ class Spree::Venue < ActiveRecord::Base
     self.address = "#{street_address} #{city} #{state} #{zip} #{country}"
     self.save
   end
-
-  def self.add_letter(collection)
-    counter = 0
-    letter = ["A", "B", "C", "D", "E"]
-    collection.try(:each) do |v|
-      v.letter = letter[counter]
-      counter = counter + 1
-      v.save
-    end
-    collection
-  end
 end
