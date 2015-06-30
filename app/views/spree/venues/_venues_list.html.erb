@@ -1,6 +1,6 @@
 <div id="locationSession" class="hide"><%= session[:location] %></div>
 <div id="venues-near-by" >
-  <% letters = ["A", "B" , "C", "D", "E"] %>
+  <% letters = ("A".."E").to_a %>
   <% counter = 0 %>
   <% @venues_near_by.try(:each) do |v| %>
     <div class="venue-box">
