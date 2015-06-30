@@ -1,3 +1,5 @@
+//= require handlebars
+
 $(document).ready(function(){
   if ($("#map")) {
   function GmapVenues () {
