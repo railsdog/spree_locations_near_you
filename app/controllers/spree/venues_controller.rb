@@ -29,11 +29,12 @@ module Spree
         end
 
         format.json do
+          @venues = Spree::Venue.add_letter(@venues)
           if user_location.present?
             @venues_near_by = @venues.limit(5).select {|v| v.miles < 50 }
             render json:{ venues: @venues_near_by, user_location: session[:location]}
           else
-            render json:{ message: "There are no stores within 50 miles", venues: @venues_near_by}
+            render json:{ message: "There are no stores within 50 miles", venues: @venues}
           end
         end
       end
