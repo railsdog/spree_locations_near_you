@@ -11,11 +11,10 @@
       <p><%= v.street_address %></p>
       <p><%= v.city %>, <%= v.state %> <%= v.zip %></p>
       <p class="phone"><%= v.phone %></p>
-      <p class="store-hours">Store Hours <i class="fa fa-heart"></i></p>
+      <p class="store-hours">Store Hours</p>
       <p class="hide"><%= v.venue_hours %> </p>
       <p class="store-wesite"><%= link_to "Visit Store Website", "http://#{v.website}"
        %></p>
-      <p class="directions">Get Directions</p>
     </div>
     <script>
       var map = new GMaps({
@@ -42,10 +41,9 @@
       <p>{{street_address}}</p>
       <p>{{city}}, {{state}} {{zip}}</p>
       <p class="phone">{{phone}}</p>
-      <p class="store-hours">Store Hours <i class="fa fa-heart"></i></p>
+      <p class="store-hours">Store Hours</p>
       <p class="hide">{{venue_hours}}</p>
       <p class="store-wesite"><a href={{website}}>Visit Store Website</a></p>
-      <p class="directions">Get Directions</p>
     </div>
   {{/each}}
 </script>
