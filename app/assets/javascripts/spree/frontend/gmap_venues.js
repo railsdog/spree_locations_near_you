@@ -107,19 +107,26 @@ $(document).ready(function(){
        };
      },
      setPin: function (lat, lng, name) {
+
+      if(title_array != null){
+      var markers_length = map.markers.length
+      var title = title_array[markers_length]
+      } else {
+        var title = ""
+      }
+
       if(custom_marker_path != ""){
         map.addMarker({
          lat: lat,
          lng: lng,
-         title: 'New marker',
+         title: title,
          icon: custom_marker_path
        });
-
       } else {
         map.addMarker({
          lat: lat,
          lng: lng,
-         title: 'New marker'
+         title: title
        });
       }
     },
