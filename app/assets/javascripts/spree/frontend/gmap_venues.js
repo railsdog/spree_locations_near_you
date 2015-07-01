@@ -132,7 +132,7 @@ $(document).ready(function(){
     setDefaultStore: function(){
       store_code = $(this).val()
       if($(this).attr('checked') === "checked"){
-        $.cookie('store_code', 'nil')
+        $.cookie('store_code', null)
         $(".venue-box input[type='checkbox']").attr('checked', false)
       } else {
         $.cookie('store_code', store_code)
