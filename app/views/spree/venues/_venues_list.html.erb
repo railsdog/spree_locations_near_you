@@ -2,50 +2,50 @@
 <div id="venues-near-by" >
 
   <% @venues_near_by.try(:each) do |v| %>
-    <div class="venue-box">
-      <label>
-        <input type="checkbox">
-      </label><span>Save as my default store</span>
-      <h3><%= v.name %></h3>
-      <p class="store-code">Store Code:  <%= v.store_code %></p>
-      <p><%= v.street_address %></p>
-      <p><%= v.city %>, <%= v.state %> <%= v.zip %></p>
-      <p class="phone"><%= v.phone %></p>
-      <p class="store-hours">Store Hours</p>
-      <p class="hide"><%= v.venue_hours %> </p>
-      <p class="store-wesite"><%= link_to "Visit Store Website", "http://#{v.website}"
-       %></p>
-    </div>
-    <script>
-      $(
+  <div class="venue-box">
+    <input type="checkbox" name="default_store" class="default_store"  value="<%= v.store_code %>">
+    <span>Save as my default store</span>
+    <h3><%= v.name %></h3>
+    <p class="store-code">Store Code:  <%= v.store_code %></p>
+    <p><%= v.street_address %></p>
+    <p><%= v.city %>, <%= v.state %> <%= v.zip %></p>
+    <p class="phone"><%= v.phone %></p>
+    <p class="store-hours">Store Hours</p>
+    <p class="hide"><%= v.venue_hours %> </p>
+    <p class="store-wesite">
+      <%= link_to "Visit Store Website", "#{v.website}", target: "_blank" %>
+    </p>
+  </div>
+  <script>
+      // Defer til after page load
+      $(function(){
         window.venuesMap = new GMaps({
           el: '#map',
           lat: <%= session[:location][0] %>,
           lng: <%= session[:location][1] %>,
           zoom: 11
         });
-        window.venuesMap.addMarker({
+        venuesMap.addMarker({
          lat: <%= v.latitude %>,
          lng: <%= v.longitude %>,
        });
-       );
+      });
     </script>
-<% end %>
-</div>
-<script id="venues-template" type="text/x-handlebars-template">
+    <% end %>
+  </div>
+  <script id="venues-template" type="text/x-handlebars-template">
   {{#each this}}
-    <div class="venue-box">
-      <label>
-        <input type="checkbox">
-      </label><span>Save as my default store</span>
-      <h3>{{name}}</h3>
-      <p class="store-code">Store Code: {{store_code}}</p>
-      <p>{{street_address}}</p>
-      <p>{{city}}, {{state}} {{zip}}</p>
-      <p class="phone">{{phone}}</p>
-      <p class="store-hours">Store Hours</p>
-      <p class="hide">{{venue_hours}}</p>
-      <p class="store-wesite"><a href={{website}}>Visit Store Website</a></p>
-    </div>
+  <div class="venue-box">
+    <input type="checkbox" class="default_store" name="default_store" value={{store_code}}>
+    <span>Save as my default store</span>
+    <h3>{{name}}</h3>
+    <p class="store-code">Store Code: {{store_code}}</p>
+    <p>{{street_address}}</p>
+    <p>{{city}}, {{state}} {{zip}}</p>
+    <p class="phone">{{phone}}</p>
+    <p class="store-hours">Store Hours</p>
+    <p class="hide">{{venue_hours}}</p>
+    <p class="store-wesite"><a href={{website}}, target: "_blank" >Visit Store Website</a></p>
+  </div>
   {{/each}}
 </script>
