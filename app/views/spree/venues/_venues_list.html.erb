@@ -12,9 +12,10 @@
     <p class="phone"><%= v.phone %></p>
     <p class="store-hours">Store Hours</p>
     <p class="hide"><%= v.venue_hours %> </p>
-    <p class="store-wesite">
-      <%= link_to "Visit Store Website", "#{v.website}", target: "_blank" %>
-    </p>
+    <% unless v.website.blank? %>
+      <p class="store-wesite"><%= link_to "Visit Store Website", "#{v.website}", target: "_blank" %></p>
+    <% end %>
+    <a href="https://www.google.com/maps/dir/current+location/<%= v.address %>"class="directions">Get Directions</a>
   </div>
   <% end %>
   </div>
@@ -30,7 +31,10 @@
     <p class="phone">{{phone}}</p>
     <p class="store-hours">Store Hours</p>
     <p class="hide">{{venue_hours}}</p>
-    <p class="store-wesite"><a href={{website}}, target: "_blank" >Visit Store Website</a></p>
+    {{#if website}}
+      <p class="store-wesite"><a href={{website}}, target: "_blank" >Visit Store Website</a></p>
+    {{/if}}
+    <a href="https://www.google.com/maps/dir/current+location/{{address}}" class="directions">Get Directions</a>
   </div>
   {{/each}}
 </script>
