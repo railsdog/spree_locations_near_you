@@ -20,10 +20,9 @@ module Spree
           if user_location.present?
             @venues_near_by = @venues.limit(5).select {|v| v.miles < 50 }
             user_location.destroy
-          render :index
+            redirect_to :index
           else
-            #come back and do something here.
-            # render json:{ message: "There are no stores within 50 miles"}
+            flash[:error] = "There are no stores within 50 miles"
           end
         end
 
