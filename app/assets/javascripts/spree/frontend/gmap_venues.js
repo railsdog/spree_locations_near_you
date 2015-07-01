@@ -13,6 +13,7 @@ $(document).ready(function(){
   init: function(){
     this.bindEvents();
     this.checkRank();
+    this.checkDefaultStore()
    if (this.location) {
       this.setMap(this.location[0], this.location[1]);
     }
@@ -32,6 +33,7 @@ $(document).ready(function(){
     this.rank.on("click", function(e){
       this.getFliteredVenues(e)
     }.bind(this))
+    $(".venue-box input[type='checkbox']").on("click", this.setDefaultStore)
   },
   getVenues: function (e){
     e.preventDefault();
@@ -85,6 +87,8 @@ $(document).ready(function(){
         if(data.venues.length > 0) {
           this.createPins(data.venues)
           this.venuesTemplate(data.venues)
+          this.checkDefaultStore()
+        $(".venue-box input[type='checkbox']").on("click", this.setDefaultStore)
         }
       }.bind(this))
       .error(function(xhr) {
@@ -124,6 +128,20 @@ $(document).ready(function(){
     },
     resetForm: function() {
       this.venuesSearch[0].reset();
+    },
+    setDefaultStore: function(){
+      store_code = $(this).val()
+      if($(this).attr('checked') === "checked"){
+        $.cookie('store_code', 'nil')
+        $(".venue-box input[type='checkbox']").attr('checked', false)
+      } else {
+        $.cookie('store_code', store_code)
+        $(".venue-box input[type='checkbox']").not(this).attr('checked', false)
+      }
+    },
+    checkDefaultStore: function(){
+      store_code = $.cookie('store_code')
+      $("input[type=checkbox][value=" + store_code +"]").attr('checked', 'true');
     }
   }
      // start
