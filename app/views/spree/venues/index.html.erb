@@ -1,8 +1,23 @@
+<%#= render partial: 'spree/venues/js_includes' %>
+
+<div class="venue-search noselect">
 <div class="row">
-  <div class="col-md-8">
-    <%= render partial: "map" %>
-  </div>
-  <div class="col-md-4">
-    <%= render partial: "venues_list" %>
+  <div class="search-control">
+    <div class="col-md-6">
+      <form id="searchVenues">
+        <input type="text" name="zipcode">
+        <button class="venue-search-btn" type="submit"><i class="fa fa-search"></i></button>
+      </form>
+    </div> <!-- col-md-7 -->
+  </div> <!-- .search-control -->
+</div> <!-- row -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <%= render partial: "map" %>
+    </div>
+    <div class="col-md-4">
+      <%= render partial: "venues_list" %>
+    </div>
   </div>
 </div>

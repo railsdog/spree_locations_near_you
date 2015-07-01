@@ -19,5 +19,13 @@ module SpreeLocationsNearYou
     end
 
     config.to_prepare &method(:activate).to_proc
+
+    config.to_prepare do
+      Rails.application.config.assets.precompile += %w(
+      spree/frontend/gmap_venues.js
+      spree/frontend/google.js
+      spree/frontend/gmap.js
+      )
+    end
   end
 end
