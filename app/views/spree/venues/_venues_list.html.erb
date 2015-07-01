@@ -18,13 +18,13 @@
     </div>
     <script>
       $(
-        var map = new GMaps({
+        window.venuesMap = new GMaps({
           el: '#map',
           lat: <%= session[:location][0] %>,
           lng: <%= session[:location][1] %>,
           zoom: 11
         });
-        map.addMarker({
+        window.venuesMap.addMarker({
          lat: <%= v.latitude %>,
          lng: <%= v.longitude %>,
        });
