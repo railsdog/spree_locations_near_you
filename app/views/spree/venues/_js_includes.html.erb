@@ -1,5 +1,7 @@
 <!-- These JS files are loaded at runtime outside of the asset pipeline because one of them live loads a remote JS file that the ones further down the page need to see loaded before they can run -->
-<script>console.log("Loading venue js includes");</script>
+<script>console.log("Loading venue js includes");
+custom_marker_path = "<%= Spree::Config.custom_marker_path %>"
+</script>
 <%= javascript_include_tag 'spree/frontend/google' %>
 <%= javascript_include_tag 'spree/frontend/gmap' %>
 <%= javascript_include_tag 'spree/frontend/gmap_venues' %>
