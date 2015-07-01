@@ -18,6 +18,7 @@ $(document).ready(function(){
           this.setMap(this.location[0], this.location[1]);
         }
         this.setPinsOnload();
+
       },
       checkRank: function(){
         $('.rank:input:checkbox').attr('checked', 'checked')
@@ -69,6 +70,8 @@ $(document).ready(function(){
         .success(function(data){
           if(data.venues.length > 0){
             this.createPins(data.venues);
+          } else {
+            this.resetVenues()
           }
         }.bind(this))
         .error(function(xhr) {
@@ -132,11 +135,30 @@ $(document).ready(function(){
     },
     createPins: function(data) {
       for (var i = data.length - 1; i >= 0; i--) {
+        if(title_array != null){
+          data[i].letter = title_array[i]
+        }
         this.setPin(data[i].latitude, data[i].longitude, data[i].name )
+      };
+      map.removeOverlays();
+      this.createOverLay(data)
+      setTimeout('$(".overlay").parent().parent().css("z-index", "100000")', 1000);
+    },
+    setOverLay: function(lat, lng, letter) {
+      map.drawOverlay({
+        lat: lat,
+        lng: lng,
+        content: '<div class="overlay letters"><span>'+ letter + '</span></div>'
+      });
+    },
+    createOverLay: function(data) {
+      for (var i = data.length - 1; i >= 0; i--) {
+        this.setOverLay(data[i].latitude, data[i].longitude, title_array[i])
       };
     },
     resetVenues: function(){
       this.venuesNearBy.html("");
+      map.removeOverlays();
     },
     venuesTemplate: function(data) {
       $("#venues-near-by").html("")
