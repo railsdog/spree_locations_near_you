@@ -14,11 +14,18 @@
       </div>
     </div>
     <script>
-      var map = new GMaps({
-        el: '#map',
-        lat: <%= session[:location][0] %>,
-        lng: <%= session[:location][1] %>,
-        zoom: 11
+      // Defer til after page load
+      $(function(){
+          window.venuesMap = new GMaps({
+            el: '#map',
+            lat: <%= session[:location][0] %>,
+            lng: <%= session[:location][1] %>,
+            zoom: 11
+          });
+          venuesMap.addMarker({
+           lat: <%= v.latitude %>,
+           lng: <%= v.longitude %>,
+          });
       });
     </script>
   <% end %>

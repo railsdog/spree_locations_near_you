@@ -22,14 +22,6 @@
   </div>
   <div class="four colums alpha">
     <div class="field">
-      <%= f.label :venue_rank %>
-      <%= f.select :rank, ["sliver","gold", "platinum"], selected: @venue.rank, class: "fullwidth title" %>
-      <%= f.error_message_on :rank %>
-    </div>
-  </div>
-
-  <div class="four colums alpha">
-    <div class="field">
       <%= f.label :phone %>
       <%= f.text_field :phone, class: "fullwidth" %>
       <%= f.error_message_on :phone %>
