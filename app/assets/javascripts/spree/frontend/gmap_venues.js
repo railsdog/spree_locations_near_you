@@ -110,27 +110,17 @@ $(document).ready(function(){
        };
      },
      setPin: function (lat, lng, name) {
-
-      if(title_array != null){
-      var markers_length = map.markers.length
-      var title = title_array[markers_length]
-      } else {
-        var title = ""
-      }
-
-      if(custom_marker_path != ""){
+      if(custom_marker_path != "" || custom_marker_path != null){
         map.addMarker({
-         lat: lat,
-         lng: lng,
-         title: title,
-         icon: custom_marker_path
-       });
+          lat: lat,
+          lng: lng,
+          icon: custom_marker_path
+        });
       } else {
         map.addMarker({
-         lat: lat,
-         lng: lng,
-         title: title
-       });
+          lat: lat,
+          lng: lng
+        });
       }
     },
     createPins: function(data) {
