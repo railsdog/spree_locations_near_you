@@ -44,5 +44,5 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  # require 'support/config_preferences'
+  require 'support/config_preferences'
 end
