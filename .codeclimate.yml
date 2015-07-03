@@ -12,5 +12,7 @@ ratings: #Specifies which files/paths will be graded.
     - "app/**"
     - Gemfile.lock
 exclude_paths:
- - "app/assets/javascripts/spree/frontend/g*.js" # vendored JS
+ - "app/assets/javascripts/spree/frontend/gmap.js"
+ - "app/assets/javascripts/spree/frontend/google.js"
+ - "app/assets/javascripts/spree/frontend/gmap_venues.js"
  - "spec/*" #Paths that you want excluded from our analysis.
