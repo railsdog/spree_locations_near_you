@@ -4,6 +4,7 @@ require 'factories'
 describe Spree::Admin::VenuesController do
   stub_authorization!
   let(:venue) { FactoryGirl.create :spree_venue }
+  let(:another_venue) { FactoryGirl.build :spree_venue }
 
   describe '#index' do
     before { spree_get :index }
@@ -14,7 +15,7 @@ describe Spree::Admin::VenuesController do
 
   describe '#create' do
     context 'with valid attributes' do
-      before { spree_post :create, venue: venue.attributes }
+      before { spree_post :create, venue: another_venue.attributes }
       it { expect(response).to redirect_to(spree.admin_venues_path) }
       end
     end

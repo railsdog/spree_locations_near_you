@@ -1,5 +1,8 @@
 ENV['RAILS_ENV'] ||= 'test'
 
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
+
 require File.expand_path('../dummy/config/environment.rb',  __FILE__)
 
 require 'rspec/rails'
@@ -44,5 +47,5 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  # require 'support/config_preferences'
+  require 'support/config_preferences'
 end
