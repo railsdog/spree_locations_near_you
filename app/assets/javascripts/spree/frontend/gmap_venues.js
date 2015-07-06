@@ -133,6 +133,7 @@ $(document).ready(function(){
       map.removeOverlays();
       this.createOverLay(data)
       setTimeout('$(".overlay").parent().parent().css("z-index", "100000")', 1000);
+      map.fitZoom();
     },
     setOverLay: function(lat, lng, letter) {
       map.drawOverlay({
