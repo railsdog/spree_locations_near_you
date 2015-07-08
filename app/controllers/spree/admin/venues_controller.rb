@@ -8,7 +8,7 @@ module Spree
       private
 
       def load_venues
-        per_page = params[:per_page] || 20
+        per_page = params[:per_page] || 10
         @venues = Spree::Venue.page(params[:page]).per(per_page)
       end
 

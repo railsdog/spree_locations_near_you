@@ -10,7 +10,6 @@
   <%= Spree.t(:search) %>
 <% end %>
 
-<%#= pagninate @venues %>
 
 <% if @venues.present? %>
   <%= render partial: 'venues' %>
@@ -19,3 +18,5 @@
     No venues found!
   </div>
 <% end %>
+
+<%= paginate @venues %>
