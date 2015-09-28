@@ -49,26 +49,22 @@ module Spree
     end
 
     def fliter_venues_near_by
-      venues_list = []
       user_location = session[:location]
       venues = Spree::Venue.by_distance_from_latlong(user_location[0], user_location[1])
 
-      # Specific to G&G
-      if params[:rank].present?
-         venues_near_by = venues.select {|v| params[:rank].keys.include?(v.rank) }
-         venues_near_by.present? if venues_list += venues_near_by
-      end
+      venue_results = venues.limit(max_results_returned)
 
-      if venues_list.present?
-        render json:{ venues: venues_list, user_location: user_location}
+      if venue_results.present?
+        render json:{ venues: venue_results, user_location: user_location}
       else
-        render json:{ message: "There are no stores available", user_location: user_location, venues: venues_list}
+        render json:{ message: "There are no stores available", user_location: user_location, venues: venue_results}
       end
     end
 
     private
+
     def max_results_returned
-      5
+      3
     end
   end
 end
