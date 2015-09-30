@@ -52,7 +52,7 @@ module Spree
       user_location = session[:location]
       venues = Spree::Venue.by_distance_from_latlong(user_location[0], user_location[1])
 
-      venue_results = venues.limit(max_results_returned)
+      venue_results = venues.where(rank: params[:rank].keys).limit(max_results_returned)
 
       if venue_results.present?
         render json:{ venues: venue_results, user_location: user_location}
