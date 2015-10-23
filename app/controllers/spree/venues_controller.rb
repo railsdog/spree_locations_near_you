@@ -1,19 +1,21 @@
 module Spree
-  class VenuesController < Spree::BaseController
+  class VenuesController < Spree::StoreController
+    before_filter :get_venues_country
+
     def index
       # user_location = Geocoder.coordinates(params[:zipcode].first)
       if params[:zipcode].present?
         user_location = Spree::Venue.create(address: params[:zipcode] )
         session[:location] = [user_location.latitude, user_location.longitude]
-        @venues = Spree::Venue.by_distance_from_latlong(user_location.latitude, user_location.longitude)
+        @venues = @venues.by_distance_from_latlong(user_location.latitude, user_location.longitude)
       elsif session[:location].present?
-        user_location = Spree::Venue.create(address: session[:location] )
-        @venues = Spree::Venue.by_distance_from_latlong(user_location.latitude, user_location.longitude)
+        user_location = @venues.create(address: session[:location] )
+        @venues = @venues.by_distance_from_latlong(user_location.latitude, user_location.longitude)
       elsif session[:location].nil?
-        location = Spree::Venue.create(address: "10005" )
+        location = @venues.create(address: "10005" )
         session[:location] = [location.latitude, location.longitude]
       else
-        @venues_near_by = Spree::Venue.all.limit(max_results_returned)
+        @venues = @venues.all.limit(max_results_returned)
       end
 
       respond_to do |format|
@@ -42,7 +44,7 @@ module Spree
     def drop_pins_on_load
       if session[:location].present?
         user_location = Spree::Venue.create(address: session[:location] )
-        @venues = Spree::Venue.by_distance_from_latlong(user_location.latitude, user_location.longitude)
+        @venues = @venues.by_distance_from_latlong(user_location.latitude, user_location.longitude)
         @venues_near_by = @venues.limit(max_results_returned)
         render json:{ venues: @venues_near_by }
       end
@@ -50,7 +52,7 @@ module Spree
 
     def fliter_venues_near_by
       user_location = session[:location]
-      venues = Spree::Venue.by_distance_from_latlong(user_location[0], user_location[1])
+      venues = @venues.by_distance_from_latlong(user_location[0], user_location[1])
 
       venue_results = venues.where(rank: params[:rank].keys).limit(max_results_returned)
 
@@ -62,6 +64,14 @@ module Spree
     end
 
     private
+
+    def get_venues_country
+      if current_currency == 'CAD'
+        @venues = Spree::Venue.in_canada
+      else
+        @venues = Spree::Venue.in_usa
+      end
+    end
 
     def max_results_returned
       3
