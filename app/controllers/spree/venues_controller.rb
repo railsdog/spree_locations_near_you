@@ -3,36 +3,27 @@ module Spree
     before_filter :get_venues_country
 
     def index
-      # user_location = Geocoder.coordinates(params[:zipcode].first)
       if params[:zipcode].present?
-        user_location = Spree::Venue.create(address: params[:zipcode] )
-        session[:location] = [user_location.latitude, user_location.longitude]
-        @venues = @venues.by_distance_from_latlong(user_location.latitude, user_location.longitude)
+        session[:location] = Geocoder.coordinates(params[:zipcode])
+        @venues = @venues.by_distance_from_latlong(session[:location][0], session[:location][1])
       elsif session[:location].present?
-        user_location = @venues.create(address: session[:location] )
-        @venues = @venues.by_distance_from_latlong(user_location.latitude, user_location.longitude)
+        @venues = @venues.by_distance_from_latlong(session[:location][0], session[:location][1])
       elsif session[:location].nil?
-        location = @venues.create(address: "10005" )
-        session[:location] = [location.latitude, location.longitude]
+        session[:location] = Geocoder.coordinates('19002')
+        @venues = @venues.by_distance_from_latlong(session[:location][0], session[:location][1])
       else
         @venues = @venues.all.limit(max_results_returned)
       end
 
+      @venues_near_by = @venues.limit(max_results_returned)
+
       respond_to do |format|
         format.html do
-          if user_location.present?
-            @venues_near_by = @venues.limit(max_results_returned)
-            user_location.destroy
           render :index
-          else
-            #come back and do something here.
-            # render json:{ message: "There are no stores available" }
-          end
         end
 
         format.json do
-          if user_location.present?
-            @venues_near_by = @venues.limit(max_results_returned)
+          if @session[:location].present?
             render json:{ venues: @venues_near_by, user_location: session[:location]}
           else
             render json:{ message: "There are no stores available.", venues: @venues_near_by}
