@@ -23,7 +23,7 @@ module Spree
         end
 
         format.json do
-          if @session[:location].present?
+          if session[:location].present?
             render json:{ venues: @venues_near_by, user_location: session[:location]}
           else
             render json:{ message: "There are no stores available.", venues: @venues_near_by}
